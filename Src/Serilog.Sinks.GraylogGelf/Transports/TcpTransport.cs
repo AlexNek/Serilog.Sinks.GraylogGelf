@@ -11,6 +11,8 @@ namespace Serilog.Sinks.GraylogGelf.Transports
 {
     internal sealed class TcpTransport : ITransport
     {
+        const int ReconnectIntervalSec = 10;
+
         private readonly string _hostName;
 
         private readonly IGelfMessageSerializer _messageSerializer;
@@ -92,7 +94,7 @@ namespace Serilog.Sinks.GraylogGelf.Transports
                     _clientStream = _client.GetStream();
                 }
 
-                _utcReconnectionTime = DateTime.UtcNow;
+                _utcReconnectionTime = DateTime.UtcNow + TimeSpan.FromSeconds(ReconnectIntervalSec);
             }
             catch (Exception exception)
             {
