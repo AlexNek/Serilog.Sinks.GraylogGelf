@@ -11,22 +11,41 @@ namespace Serilog.Sinks.GraylogGelf.Transports
 {
     internal sealed class TcpTransport : ITransport
     {
+        const int ReconnectIntervalSec = 10;
+
         private readonly string _hostName;
-        private readonly int _port;
-        private readonly bool _useSecureConnection;
-        private readonly bool _useNullByteDelimiter;
+
         private readonly IGelfMessageSerializer _messageSerializer;
-        private DateTime _utcReconnectionTime;
-        private TcpClient _client;
+
+        private readonly int _port;
+
+        private readonly bool _useNullByteDelimiter;
+
+        private readonly bool _useSecureConnection;
+
+        private TcpClient? _client;
+
         private Stream _clientStream;
 
-        internal TcpTransport(string hostName, int port, bool useSecureConnection, bool useNullByteDelimiter, IGelfMessageSerializer messageSerializer)
+        private DateTime _utcReconnectionTime;
+
+        internal TcpTransport(
+            string hostName,
+            int port,
+            bool useSecureConnection,
+            bool useNullByteDelimiter,
+            IGelfMessageSerializer messageSerializer)
         {
             _hostName = hostName;
             _port = port;
             _useSecureConnection = useSecureConnection;
             _useNullByteDelimiter = useNullByteDelimiter;
             _messageSerializer = messageSerializer;
+        }
+
+        public void Dispose()
+        {
+            Close();
         }
 
         public void Send(GelfMessage message)
@@ -41,15 +60,13 @@ namespace Serilog.Sinks.GraylogGelf.Transports
             }
         }
 
-        public void Dispose()
-        {
-            Close();
-        }
-        
         private void Close()
         {
             if (_client == null)
+            {
                 return;
+            }
+
             _clientStream.SafeDispose();
             _client.SafeDispose();
             _client = null;
@@ -60,7 +77,10 @@ namespace Serilog.Sinks.GraylogGelf.Transports
             try
             {
                 if (_client != null && _client.Connected && DateTime.UtcNow < _utcReconnectionTime)
+                {
                     return;
+                }
+
                 Close();
                 _client = new TcpClient();
                 _client.Connect(_hostName, _port);
@@ -71,9 +91,10 @@ namespace Serilog.Sinks.GraylogGelf.Transports
                 }
                 else
                 {
-                    _clientStream = _client.GetStream();    
+                    _clientStream = _client.GetStream();
                 }
-                _utcReconnectionTime = DateTime.UtcNow;
+
+                _utcReconnectionTime = DateTime.UtcNow + TimeSpan.FromSeconds(ReconnectIntervalSec);
             }
             catch (Exception exception)
             {
