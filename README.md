@@ -136,6 +136,7 @@ Possible we could change it as users wants.
 
 
 ## Versions
+V1.0.5 - Fix TCP reconnection for each message. Introduce 10 seconds reconnect interval
 V1.0.0 - Initial release
 
 ## License
