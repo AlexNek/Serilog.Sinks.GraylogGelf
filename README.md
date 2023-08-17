@@ -134,11 +134,11 @@ Possible we could change it as users wants.
 | maxMessageSizeInUdp | Maximum message size for UDP transport | 8192 |
 | minUdpMessageSizeForCompression | Minimum message size for UDP compression | 512 |
 ## FAQ
- - Q. What is the differencess to original project?
+ - Q. What is the differencess to original project?  
    A. Add possibility to read configuration from appsettings.json. Correct some small issues.
 
 ## Versions
-V1.0.5 - Fix TCP reconnection for each message. Introduce 10 seconds reconnect interval
+V1.0.5 - Fix TCP reconnection for each message. Introduce 10 seconds reconnect interval  
 V1.0.0 - Initial release
 
 ## License
