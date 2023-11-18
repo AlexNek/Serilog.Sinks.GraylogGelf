@@ -22,6 +22,7 @@ All transports can be used synchoniously and asynchroniouly.
 
 Samples are only for your understandig of base usase you must not use exact same code into your application.
 
+
 ### Configuration via code
 
 In order to create a new sink one has to create an instance of class `GraylogSinkConfiguration` first. 
@@ -133,6 +134,11 @@ Possible we could change it as users wants.
 | propertyPrefix | Prefix for all fields | MyVar_ |
 | maxMessageSizeInUdp | Maximum message size for UDP transport | 8192 |
 | minUdpMessageSizeForCompression | Minimum message size for UDP compression | 512 |
+
+## Test with Graylog
+The easiest way to test logging is to install the [graylog docker image](https://hub.docker.com/r/graylog/graylog).
+Here is the official [Installation Guide](https://go2docs.graylog.org/5-2/downloading_and_installing_graylog/docker_installation.htm) and here is additional [notes](Documentation/graylog.md)
+
 ## FAQ
  - Q. What is the differencess to original project?
    A. Add possibility to read configuration from appsettings.json. Correct some small issues.
