@@ -1,6 +1,5 @@
-using BlazorLogTest.Data;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using BlazorLogTest.Components;
+
 using Serilog;
 
 namespace BlazorLogTest
@@ -11,7 +10,7 @@ namespace BlazorLogTest
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            AddServices(builder.Services);
+           AddServices(builder.Services);
 
             builder.Host.UseSerilog((hostContext, services, loggerConfiguration) =>
                 {
@@ -35,11 +34,10 @@ namespace BlazorLogTest
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
+            app.UseAntiforgery();
 
-            app.UseRouting();
-
-            app.MapBlazorHub();
-            app.MapFallbackToPage("/_Host");
+            app.MapRazorComponents<App>()
+                .AddInteractiveServerRenderMode();
 
             app.Run();
         }
@@ -47,9 +45,9 @@ namespace BlazorLogTest
         private static void AddServices(IServiceCollection services)
         {
             // Add services to the container.
-            services.AddRazorPages();
-            services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddRazorComponents()
+                .AddInteractiveServerComponents();
+            //services.AddAntiforgery();
         }
     }
 }
