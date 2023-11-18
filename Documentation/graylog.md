@@ -1,15 +1,15 @@
 # Graylog
 ## Overview
-If you only have one desktop application then using file logging is not a bad idea.
-But if you have a lot of application on different computers then it will be not so easy to look into file based logs for every application.
-The better solution is to use a single location for all application logs.
-One of the solutions is Graylog software - it centrally captures, stores, and allowed real-time search and log analysis.
-You can use most of the standard loggers with extensions for sending log stream. Don't forget that every log message could have more that one additional properties,
-like  - app_name="My_Great_application". It will be easy to use this properties for messages search.
+If you only have one desktop application, then it is not a bad idea to use the File Logger.
+However, if you have a lot of applications on different computers, it will not be so easy to have a look at file-based logs for each application.
+The better solution is to use a single location for all of your application logs.
+One of the solutions is Graylog software, which centrally captures, stores and enables real-time search and log analysis.
+You can use most standard loggers with extensions to send a log stream. Don't forget that each log message can have more than one additional property,
+like - app_name="My_Great_Application". It will be easy to use these properties to search for messages.
 
 
 ## Run graylog locally
-For testing purpose you can simply run graylog locally, installing on docker with docker compose.
+For testing purposes, you can simply run graylog locally, installed on docker with docker compose.
 As long it is running, add GELF tcp and GELF udp inputs.
 
 For windows installation and personal account you can do the next steps:
@@ -82,10 +82,9 @@ For windows installation and personal account you can do the next steps:
 ![image](pics/gr_input-details.jpg)
 
 ## General usage with C# application
-I'd like to use serilog as only one logger provider, for that case you can use GraylogGelf sink.
-It is possible to use serilog as additional logging provider for microsoft logging,
-for that case you need to use `AddSerilog()` not `UseSerilog()`.
-For test you can run one of the sample application. Then you will see something like this:
+I'd like to use serilog as a single logger provider, in which case you can use GraylogGelf sink.
+It is possible to use Serilog as an additional logging provider for Microsoft logging, in this case you need to use `AddSerilog()`, not `UseSerilog()`.
+To test, you can try running one of the Sample Applications. Then you will see something like this:
 
 <figure>
   <img
@@ -114,11 +113,11 @@ You can add or delete fields and change field order with drag&drop. It is possib
 It is possible to store/load table settings
 
 ### How to create a dashboard
-If you want to see a little bit more as text table then try to create a dashboard.
+If you want to see a bit more than a text table, try creating a dashboard.
 ![Image](pics/gr_dashboard-overview.png)
 For start, export your table as dasboard.
 ![Image](pics/gr_export-dashboard.png)
-Then you can add additional dashborad parts and arrange its wirg drag&drop (left upper corner with 3 small lines)
+Then you can add more dashboard parts and position them by dragging and dropping (top left corner with 3 little lines).
 ![Image](pics/gr_add_dashboard_part.png)
 For pie chart you need to create `Group By` and `Metrics` for the same field.
 ![Image](pics/gr_add-pie-chart.png)
