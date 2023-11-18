@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\serilog.md = Documentation\serilog.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorLogTest", "BlazorLogTest\BlazorLogTest.csproj", "{4B0CD829-2ADF-4198-A1EA-699A2DA70EF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorLogTest", "BlazorLogTest\BlazorLogTest.csproj", "{4B0CD829-2ADF-4198-A1EA-699A2DA70EF4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{BEC074A1-23F8-4B90-B87C-B1114022E326}"
 EndProject
