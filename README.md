@@ -144,6 +144,7 @@ Here is the official [Installation Guide](https://go2docs.graylog.org/5-2/downlo
    A. Add possibility to read configuration from appsettings.json. Correct some small issues.
 
 ## Versions
+V1.0.5 - Demo application updated to .NET 9.0
 V1.0.5 - Fix TCP reconnection for each message. Introduce 10 seconds reconnect interval
 V1.0.0 - Initial release
 
